@@ -1,9 +1,13 @@
-package com.example.sketchit;
+package com.avialdo.sketchit.activities;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import com.avialdo.sketchit.R;
+import com.avialdo.sketchit.R.id;
+import com.avialdo.sketchit.R.layout;
+import com.avialdo.sketchit.R.menu;
 
 public class MainActivity extends ActionBarActivity {
 
