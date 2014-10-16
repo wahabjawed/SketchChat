@@ -14,6 +14,5 @@ public class AbstractRequest {
 	public void showToast(String text, int duration) {
 
 		Toast.makeText(SketchApp.getContext(), text, duration).show();
-
 	}
 }

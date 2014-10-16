@@ -30,18 +30,13 @@ public class ZainuObj {
 	}
 
 	CameraUtil CameraUtil = new CameraUtil();
-	FileIO FileIO = new FileIO();
+
 	NetworkManager NetworkManager = new NetworkManager();
 	Notification Notification = new Notification();
 	DateTime DateTime = new DateTime();
 
 	public CameraUtil getCameraUtil() {
 		return CameraUtil;
-	}
-
-	public FileIO getFileIO() {
-		// TODO Auto-generated method stub
-		return FileIO;
 	}
 
 }

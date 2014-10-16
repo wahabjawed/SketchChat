@@ -1,15 +1,13 @@
 package com.avialdo.sketchit.activities;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import com.avialdo.sketchit.R;
-import com.avialdo.sketchit.R.id;
-import com.avialdo.sketchit.R.layout;
-import com.avialdo.sketchit.R.menu;
 
-public class MainActivity extends ActionBarActivity {
+import com.avialdo.sketchit.R;
+import com.avialdo.sketchit.abstracts.SketchActivity;
+
+public class MainActivity extends SketchActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,5 +32,17 @@ public class MainActivity extends ActionBarActivity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	public void setupView() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void setupListner() {
+		// TODO Auto-generated method stub
+
 	}
 }
