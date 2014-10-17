@@ -2,7 +2,6 @@ package com.avialdo.sketchit.abstracts;
 
 import android.os.Bundle;
 
-import com.avialdo.sketchit.networks.INetwork;
 
 public abstract class SketchNetworkActivity extends AbstractActivity
 		implements INetwork,IActivityCallBack {

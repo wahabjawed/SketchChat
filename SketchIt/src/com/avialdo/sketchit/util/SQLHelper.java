@@ -1,22 +1,20 @@
 package com.avialdo.sketchit.util;
 
-import com.avialdo.sketchit.SketchApp;
-
 import android.content.ContentValues;
-import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-public class SQLHelper {
-	static SQLiteDatabase db = SketchApp.db;
+import com.avialdo.sketchit.SketchApp;
 
-	public static void SetupDB(Context context) {
-		db.execSQL("CREATE TABLE IF NOT EXISTS user(id INTEGER, name TEXT,email TEXT, password TEXT);");
-		db.execSQL("CREATE TABLE IF NOT EXISTS Contact(ID INTEGER PRIMARY KEY, number TEXT,name TEXT, displayPic BLOB);");
+public class SQLHelper {
+	public static SQLiteDatabase db = SketchApp.db;
+
+	public static void SetupDB() {
+		db.execSQL("CREATE TABLE IF NOT EXISTS user(userid INTEGER, username TEXT,password TEXT, number TEXT);");
+		db.execSQL("CREATE TABLE IF NOT EXISTS Contact(ID INTEGER PRIMARY KEY, number TEXT,username TEXT, status TEXT);");
 		db.execSQL("CREATE TABLE IF NOT EXISTS Ref_Message(ID INTEGER PRIMARY KEY, message TEXT, refID INTEGER);");
 		db.execSQL("CREATE TABLE IF NOT EXISTS Tran_Message(ID INTEGER, ContactID INTEGER, MessageID INTEGER, Nofity INTEGER, Time TEXT, Day TEXT, Reminder TEXT);");
-		db.execSQL("CREATE TABLE IF NOT EXISTS Tran_WiFi(ID INTEGER, ssid TEXT,bssid TEXT, whenConnected INTEGER);");
 	}
 
 	public static boolean isFirstTime() {

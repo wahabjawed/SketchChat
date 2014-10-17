@@ -10,13 +10,13 @@ import android.support.v4.app.TaskStackBuilder;
 
 import com.avialdo.sketchit.R;
 import com.avialdo.sketchit.SketchApp;
-import com.avialdo.sketchit.activities.MainActivity;
+import com.avialdo.sketchit.activities.MessageList;
 
 public class Notification {
 
 	public  void NewMessageNotification(String message, String title) {
 		// Creates an explicit intent for an Activity in your app
-		Intent resultIntent = new Intent(SketchApp.context, MainActivity.class);
+		Intent resultIntent = new Intent(SketchApp.context, MessageList.class);
 
 		// The stack builder object will contain an artificial back
 		// stack for the
@@ -28,7 +28,7 @@ public class Notification {
 				.create(SketchApp.context);
 		// Adds the back stack for the Intent (but not the Intent
 		// itself)
-		stackBuilder.addParentStack(MainActivity.class);
+		stackBuilder.addParentStack(MessageList.class);
 		// Adds the Intent that starts the Activity to the top of the
 		// stack
 		stackBuilder.addNextIntent(resultIntent);
