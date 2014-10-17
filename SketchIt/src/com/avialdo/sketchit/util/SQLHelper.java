@@ -8,7 +8,7 @@ import android.util.Log;
 import com.avialdo.sketchit.SketchApp;
 
 public class SQLHelper {
-	static SQLiteDatabase db = SketchApp.db;
+	public static SQLiteDatabase db = SketchApp.db;
 
 	public static void SetupDB() {
 		db.execSQL("CREATE TABLE IF NOT EXISTS user(userid INTEGER, username TEXT,password TEXT, number TEXT);");
