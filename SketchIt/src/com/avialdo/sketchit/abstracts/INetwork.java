@@ -1,4 +1,4 @@
-package com.avialdo.sketchit.networks;
+package com.avialdo.sketchit.abstracts;
 
 public interface INetwork {
 	public abstract void postRequestExecute();
