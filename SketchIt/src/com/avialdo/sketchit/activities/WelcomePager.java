@@ -9,13 +9,16 @@ import android.support.v4.view.ViewPager;
 import android.view.Window;
 
 import com.avialdo.sketchit.R;
+import com.avialdo.sketchit.fragments.LoginFragment;
+import com.avialdo.sketchit.fragments.SignupFragment;
+import com.avialdo.sketchit.fragments.WelcomeFragment;
 
-public class WelcomePagerAdapter extends FragmentActivity {
+public class WelcomePager extends FragmentActivity {
 
 	static final int ITEMS = 3;
 	MyAdapter mAdapter;
-	static ViewPager mPager;
-	static int currentPage = 0;
+	public static ViewPager mPager;
+	public static int currentPage = 1;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -25,17 +28,18 @@ public class WelcomePagerAdapter extends FragmentActivity {
 		mAdapter = new MyAdapter(getSupportFragmentManager());
 		mPager = (ViewPager) findViewById(R.id.pager);
 		mPager.setAdapter(mAdapter);
+		mPager.setCurrentItem(1);
 
 	}
 
 	@Override
 	public void onBackPressed() {
 
-		if (currentPage == 0) {
+		if (currentPage == 1) {
 			super.onBackPressed();
 		} else {
-			mPager.setCurrentItem(0);
-			currentPage = 0;
+			mPager.setCurrentItem(1);
+			currentPage = 1;
 		}
 	}
 
@@ -53,9 +57,9 @@ public class WelcomePagerAdapter extends FragmentActivity {
 		public Fragment getItem(int position) {
 
 			switch (position) {
-			case 0: // Fragment # 0 - This will show image
+			case 1: // Fragment # 0 - This will show image
 				return WelcomeFragment.init(position);
-			case 1: // Fragment # 1 - This will show image
+			case 0: // Fragment # 1 - This will show image
 				return SignupFragment.init(position);
 			case 2:// Fragment # 2-9 - Will show list
 				return LoginFragment.init(position);

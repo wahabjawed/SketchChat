@@ -1,4 +1,4 @@
-package com.avialdo.sketchit.activities;
+package com.avialdo.sketchit.fragments;
 
 import java.util.regex.Pattern;
 
@@ -11,8 +11,11 @@ import android.text.TextWatcher;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,6 +27,7 @@ public class SignupFragment extends SketchNetworkFragment {
 
 	Button signup;
 	EditText user_email, password;
+	Animation animation;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -31,7 +35,7 @@ public class SignupFragment extends SketchNetworkFragment {
 
 	}
 
-	static SignupFragment init(int val) {
+	public static SignupFragment init(int val) {
 		SignupFragment fragment = new SignupFragment();
 		// Supply val input as an argument.
 		// Bundle args = new Bundle();
@@ -131,16 +135,33 @@ public class SignupFragment extends SketchNetworkFragment {
 				changeButtonVisibility();
 			}
 		});
+
+		signup.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+					new 
+			}
+		});
 	}
 
 	private void changeButtonVisibility() {
 		if (user_email.getText().length() > 0
 				&& password.getText().length() > 0) {
-
-			signup.setVisibility(View.VISIBLE);
+			if (signup.getVisibility() == View.INVISIBLE) {
+				signup.setVisibility(View.VISIBLE);
+				animation = AnimationUtils.loadAnimation(this.getActivity(),
+						R.anim.fade_in);
+				signup.startAnimation(animation);
+			}
 		} else {
-			signup.setVisibility(View.INVISIBLE);
-
+			if (signup.getVisibility() == View.VISIBLE) {
+				animation = AnimationUtils.loadAnimation(this.getActivity(),
+						R.anim.fade_out);
+				signup.startAnimation(animation);
+				signup.setVisibility(View.INVISIBLE);
+			}
 		}
 	}
 

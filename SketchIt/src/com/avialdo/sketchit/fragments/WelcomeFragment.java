@@ -1,4 +1,4 @@
-package com.avialdo.sketchit.activities;
+package com.avialdo.sketchit.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,6 +9,7 @@ import android.widget.Button;
 
 import com.avialdo.sketchit.R;
 import com.avialdo.sketchit.abstracts.SketchFragment;
+import com.avialdo.sketchit.activities.WelcomePager;
 
 public class WelcomeFragment extends SketchFragment {
 
@@ -20,7 +21,7 @@ public class WelcomeFragment extends SketchFragment {
 
 	}
 
-	static WelcomeFragment init(int val) {
+	public static WelcomeFragment init(int val) {
 		WelcomeFragment fragment = new WelcomeFragment();
 		// Supply val input as an argument.
 		// Bundle args = new Bundle();
@@ -58,8 +59,8 @@ public class WelcomeFragment extends SketchFragment {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				// startActivity(new Intent(Welcome.this, Login.class));
-				WelcomePagerAdapter.currentPage = 2;
-				WelcomePagerAdapter.mPager.setCurrentItem(2);
+				WelcomePager.currentPage = 2;
+				WelcomePager.mPager.setCurrentItem(2);
 			}
 		});
 
@@ -69,8 +70,8 @@ public class WelcomeFragment extends SketchFragment {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				// startActivity(new Intent(Welcome.this, Signup.class));
-				WelcomePagerAdapter.currentPage = 1;
-				WelcomePagerAdapter.mPager.setCurrentItem(1);
+				WelcomePager.currentPage = 0;
+				WelcomePager.mPager.setCurrentItem(0);
 			}
 		});
 

@@ -12,18 +12,18 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.avialdo.sketchit.abstracts.SketchNetworkActivity;
 import com.avialdo.sketchit.abstracts.SketchNetworkFragment;
 import com.avialdo.sketchit.util.JSONParser;
 import com.avialdo.sketchit.util.SQLHelper;
 
-public class LoginRequest implements IRequestHandler.Fragment {
+public class RegisterRequest implements IRequestHandler {
 
+	String name;
 	String password;
 	String email;
 	SketchNetworkFragment activity;
 
-	public LoginRequest(String email, String password) {
+	public RegisterRequest(String name, String email, String password) {
 
 		this.password = password;
 		this.email = email;
@@ -43,7 +43,6 @@ public class LoginRequest implements IRequestHandler.Fragment {
 					int success = json_data.getInt("success");
 					if (success == 1) {
 						int ID = json_data.getInt("ID");
-						String name = json_data.getString("name");
 						SQLHelper.registerUser(ID, name, email, password);
 						activity.postRequestExecute();
 					} else {
@@ -64,15 +63,16 @@ public class LoginRequest implements IRequestHandler.Fragment {
 		@Override
 		protected JSONObject doInBackground(Void... arg0) {
 			// TODO Auto-generated method stub
-			Log.d("SketchIt", "Start Login");
+			Log.d("Vidture", "Start Register");
 			ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 			nameValuePairs.add(new BasicNameValuePair("password", password));
 			nameValuePairs.add(new BasicNameValuePair("email", email));
+			nameValuePairs.add(new BasicNameValuePair("name", name));
 
 			JSONParser sendData = new JSONParser();
 			JSONObject result = sendData.makeHttpRequest(networkAddress
-					+ "login.php", "POST", nameValuePairs);
-			Log.d("SketchIt", "finish sending login info");
+					+ "register.php", "POST", nameValuePairs);
+			Log.d("Vidture", "finish sending register info");
 
 			return result;
 
@@ -85,6 +85,7 @@ public class LoginRequest implements IRequestHandler.Fragment {
 		// TODO Auto-generated method stub
 		activity = _activity;
 		new Task().execute();
+
 	}
 
 }

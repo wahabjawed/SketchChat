@@ -32,7 +32,7 @@ public class MessageList extends SketchNetworkActivity {
 		} else {
 
 			SQLHelper.SetupDB();
-			startActivity(new Intent(this, WelcomePagerAdapter.class));
+			startActivity(new Intent(this, WelcomePager.class));
 			this.finish();
 		}
 

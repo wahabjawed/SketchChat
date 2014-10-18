@@ -1,4 +1,4 @@
-package com.avialdo.sketchit.activities;
+package com.avialdo.sketchit.fragments;
 
 import android.database.Cursor;
 import android.os.Bundle;
@@ -9,11 +9,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-
 import com.avialdo.sketchit.R;
 import com.avialdo.sketchit.abstracts.SketchNetworkFragment;
 
@@ -21,7 +22,8 @@ public class LoginFragment extends SketchNetworkFragment {
 
 	Button login;
 	EditText user_email, password;
-	static LoginFragment fragment;
+
+	Animation animation;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -37,13 +39,8 @@ public class LoginFragment extends SketchNetworkFragment {
 		password = (EditText) layoutView.findViewById(R.id.password);
 	}
 
-	static LoginFragment init(int val) {
-		fragment = new LoginFragment();
-		// Supply val input as an argument.
-		// Bundle args = new Bundle();
-		// args.putInt("val", val);
-		// truitonFrag.setArguments(args);
-
+	public static LoginFragment init(int val) {
+		LoginFragment fragment = new LoginFragment();
 		return fragment;
 	}
 
@@ -143,11 +140,19 @@ public class LoginFragment extends SketchNetworkFragment {
 	private void changeButtonVisibility() {
 		if (user_email.getText().length() > 0
 				&& password.getText().length() > 0) {
-
-			login.setVisibility(View.VISIBLE);
+			if (login.getVisibility() == View.INVISIBLE) {
+				login.setVisibility(View.VISIBLE);
+				animation = AnimationUtils.loadAnimation(this.getActivity(),
+						R.anim.fade_in);
+				login.setAnimation(animation);
+			}
 		} else {
-			login.setVisibility(View.INVISIBLE);
-
+			if (login.getVisibility() == View.VISIBLE) {
+				animation = AnimationUtils.loadAnimation(this.getActivity(),
+						R.anim.fade_out);
+				login.setAnimation(animation);
+				login.setVisibility(View.INVISIBLE);
+			}
 		}
 	}
 
