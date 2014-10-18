@@ -35,15 +35,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.Welcome" >
-        </activity>
         <activity
-            android:name=".activities.Signup"
-            android:windowSoftInputMode="adjustResize" >
-        </activity>
-        <activity
-            android:name=".activities.Login"
-            android:windowSoftInputMode="adjustResize" >
+            android:name=".activities.WelcomePagerAdapter"
+            android:windowSoftInputMode="adjustPan|adjustResize" >
         </activity>
     </application>
 

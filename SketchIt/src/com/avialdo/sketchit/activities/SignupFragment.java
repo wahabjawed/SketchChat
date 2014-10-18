@@ -9,42 +9,64 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Patterns;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.avialdo.sketchit.R;
-import com.avialdo.sketchit.abstracts.SketchNetworkActivity;
+import com.avialdo.sketchit.abstracts.SketchNetworkFragment;
 
-public class Signup extends SketchNetworkActivity {
+public class SignupFragment extends SketchNetworkFragment {
 
 	Button signup;
 	EditText user_email, password;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		
-		setContentView(R.layout.signup);
-		setupView();
+
+	}
+
+	static SignupFragment init(int val) {
+		SignupFragment fragment = new SignupFragment();
+		// Supply val input as an argument.
+		// Bundle args = new Bundle();
+		// args.putInt("val", val);
+		// truitonFrag.setArguments(args);
+		return fragment;
+	}
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		View layoutView = inflater.inflate(R.layout.signup, container, false);
+		setupView(layoutView);
 		setupListner();
 		getAccountEmail();
+		this.getActivity()
+				.getWindow()
+				.setSoftInputMode(
+						WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 
+		return layoutView;
 	}
 
 	private void getAccountEmail() {
 		Pattern emailPattern = Patterns.EMAIL_ADDRESS; // API level 8+
-		Account[] accounts = AccountManager.get(this).getAccounts();
+		Account[] accounts = AccountManager.get(this.getActivity())
+				.getAccounts();
 
 		for (Account account : accounts) {
 			if (emailPattern.matcher(account.name).matches()) {
 				user_email.setText(account.name);
 				password.requestFocus();
-				InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+				InputMethodManager imm = (InputMethodManager) this
+						.getActivity().getSystemService(
+								Context.INPUT_METHOD_SERVICE);
 				imm.showSoftInput(password, InputMethodManager.SHOW_IMPLICIT);
 				break;
 
@@ -53,29 +75,11 @@ public class Signup extends SketchNetworkActivity {
 	}
 
 	@Override
-	public void postRequestExecute() {
+	public void setupView(View layoutFragment) {
 		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void preRequestExecute() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void progressUpdate(String update) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void setupView() {
-		// TODO Auto-generated method stub
-		signup = (Button) findViewById(R.id.signup);
-		user_email = (EditText) findViewById(R.id.user_email);
-		password = (EditText) findViewById(R.id.password);
+		signup = (Button) layoutFragment.findViewById(R.id.signup);
+		user_email = (EditText) layoutFragment.findViewById(R.id.user_email);
+		password = (EditText) layoutFragment.findViewById(R.id.password);
 
 	}
 
@@ -138,6 +142,24 @@ public class Signup extends SketchNetworkActivity {
 			signup.setVisibility(View.INVISIBLE);
 
 		}
+	}
+
+	@Override
+	public void postRequestExecute() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void preRequestExecute() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void progressUpdate(String update) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

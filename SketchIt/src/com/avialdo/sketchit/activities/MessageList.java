@@ -12,19 +12,15 @@ import com.avialdo.sketchit.R;
 import com.avialdo.sketchit.abstracts.SketchNetworkActivity;
 import com.avialdo.sketchit.util.SQLHelper;
 
-
 public class MessageList extends SketchNetworkActivity {
 
-	
 	ListView List;
 	TextView ProText;
-	
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		
+
 		SharedPreferences prefs = PreferenceManager
 				.getDefaultSharedPreferences(this);
 		if (prefs.getBoolean("first_time", false)) {
@@ -34,12 +30,12 @@ public class MessageList extends SketchNetworkActivity {
 			setupListner();
 
 		} else {
-			
+
 			SQLHelper.SetupDB();
-			startActivity(new Intent(this,Welcome.class));
+			startActivity(new Intent(this, WelcomePagerAdapter.class));
 			this.finish();
 		}
-		
+
 	}
 
 	@Override
@@ -64,19 +60,19 @@ public class MessageList extends SketchNetworkActivity {
 	@Override
 	public void postRequestExecute() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void preRequestExecute() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void progressUpdate(String update) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -89,6 +85,6 @@ public class MessageList extends SketchNetworkActivity {
 	@Override
 	public void setupListner() {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

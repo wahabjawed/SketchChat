@@ -1,68 +1,65 @@
 package com.avialdo.sketchit.activities;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map.Entry;
-
 import android.database.Cursor;
-import android.database.DatabaseUtils.InsertHelper;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.Window;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.avialdo.sketchit.R;
-import com.avialdo.sketchit.abstracts.SketchNetworkActivity;
-import com.avialdo.sketchit.util.SQLHelper;
+import com.avialdo.sketchit.abstracts.SketchNetworkFragment;
 
-public class Login extends SketchNetworkActivity {
+public class LoginFragment extends SketchNetworkFragment {
 
 	Button login;
 	EditText user_email, password;
+	static LoginFragment fragment;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.login);
-		setupView();
+
+	}
+
+	@Override
+	public void setupView(View layoutView) {
+		// TODO Auto-generated method stub
+		login = (Button) layoutView.findViewById(R.id.login);
+		user_email = (EditText) layoutView.findViewById(R.id.user_email);
+		password = (EditText) layoutView.findViewById(R.id.password);
+	}
+
+	static LoginFragment init(int val) {
+		fragment = new LoginFragment();
+		// Supply val input as an argument.
+		// Bundle args = new Bundle();
+		// args.putInt("val", val);
+		// truitonFrag.setArguments(args);
+
+		return fragment;
+	}
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		View layoutView = inflater.inflate(R.layout.login, container, false);
+		setupView(layoutView);
 		setupListner();
+		this.getActivity()
+				.getWindow()
+				.setSoftInputMode(
+						WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 
+		return layoutView;
 	}
-
-	@Override
-	public void postRequestExecute() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void preRequestExecute() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void progressUpdate(String update) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void setupView() {
-		// TODO Auto-generated method stub
-		login = (Button) findViewById(R.id.login);
-		user_email = (EditText) findViewById(R.id.user_email);
-		password = (EditText) findViewById(R.id.password);
-	}
-
-
 
 	@Override
 	public void setupListner() {
@@ -73,9 +70,11 @@ public class Login extends SketchNetworkActivity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Cursor phones = getContentResolver().query(
-						ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
-						null, null, null, null);
+				Cursor phones = LoginFragment.this
+						.getActivity()
+						.getContentResolver()
+						.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+								null, null, null, null);
 				while (phones.moveToNext()) {
 
 					if (phones
@@ -150,6 +149,24 @@ public class Login extends SketchNetworkActivity {
 			login.setVisibility(View.INVISIBLE);
 
 		}
+	}
+
+	@Override
+	public void postRequestExecute() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void preRequestExecute() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void progressUpdate(String update) {
+		// TODO Auto-generated method stub
+
 	}
 
 }
