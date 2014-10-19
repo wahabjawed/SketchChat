@@ -12,12 +12,13 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.avialdo.sketchit.abstracts.SketchNetworkActivity;
+import com.avialdo.sketchit.abstracts.AbstractRequest;
 import com.avialdo.sketchit.abstracts.SketchNetworkFragment;
 import com.avialdo.sketchit.util.JSONParser;
 import com.avialdo.sketchit.util.SQLHelper;
 
-public class LoginRequest implements IRequestHandler.Fragment {
+public class LoginRequest extends AbstractRequest implements
+		IRequestHandler.Fragment {
 
 	String password;
 	String email;

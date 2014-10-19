@@ -2,7 +2,6 @@ package com.avialdo.sketchit.util;
 
 import android.content.Context;
 import android.telephony.TelephonyManager;
-import android.widget.Toast;
 
 import com.avialdo.sketchit.SketchApp;
 

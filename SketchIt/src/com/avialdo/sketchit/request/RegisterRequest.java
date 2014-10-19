@@ -12,15 +12,18 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.avialdo.sketchit.abstracts.AbstractRequest;
 import com.avialdo.sketchit.abstracts.SketchNetworkFragment;
 import com.avialdo.sketchit.util.JSONParser;
 import com.avialdo.sketchit.util.SQLHelper;
 
-public class RegisterRequest implements IRequestHandler {
+public class RegisterRequest extends AbstractRequest implements
+		IRequestHandler.Fragment {
 
-	String name;
+	String username;
 	String password;
 	String email;
+	String number;
 	SketchNetworkFragment activity;
 
 	public RegisterRequest(String name, String email, String password) {
@@ -43,7 +46,7 @@ public class RegisterRequest implements IRequestHandler {
 					int success = json_data.getInt("success");
 					if (success == 1) {
 						int ID = json_data.getInt("ID");
-						SQLHelper.registerUser(ID, name, email, password);
+						SQLHelper.registerUser(ID, username, email, password);
 						activity.postRequestExecute();
 					} else {
 						String text = json_data.getString("message");
@@ -67,7 +70,7 @@ public class RegisterRequest implements IRequestHandler {
 			ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 			nameValuePairs.add(new BasicNameValuePair("password", password));
 			nameValuePairs.add(new BasicNameValuePair("email", email));
-			nameValuePairs.add(new BasicNameValuePair("name", name));
+			nameValuePairs.add(new BasicNameValuePair("name", username));
 
 			JSONParser sendData = new JSONParser();
 			JSONObject result = sendData.makeHttpRequest(networkAddress

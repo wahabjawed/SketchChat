@@ -141,7 +141,7 @@ public class SignupFragment extends SketchNetworkFragment {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-					new 
+				// new RegisterRequest(name, email, password)
 			}
 		});
 	}
