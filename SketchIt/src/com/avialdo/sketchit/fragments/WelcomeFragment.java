@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
-
 import com.avialdo.sketchit.R;
 import com.avialdo.sketchit.abstracts.SketchFragment;
 import com.avialdo.sketchit.activities.WelcomePager;
@@ -20,26 +19,17 @@ public class WelcomeFragment extends SketchFragment {
 	Button login, signup;
 	static final int ITEMS = 3;
 	MyAdapter mAdapter;
-	private int fragVal;
 
 	public static WelcomeFragment init(int val) {
 		WelcomeFragment fragment = new WelcomeFragment();
-		// Supply val input as an argument.
-		// Bundle args = new Bundle();
-		// args.putInt("val", val);
-		// truitonFrag.setArguments(args);
 		return fragment;
 	}
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		fragVal = getArguments() != null ? getArguments().getInt("val") : 1;
-	}
 
-	// private PagerAdapter buildAdapter() {
-	// return (new MyAdapter(getActivity(), getChildFragmentManager()));
-	// }
+	}
 
 	@Override
 	public void setupView(View layoutView) {

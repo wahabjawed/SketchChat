@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.avialdo.sketchit.R;
 import com.avialdo.sketchit.abstracts.SketchFragment;
 
@@ -19,6 +18,8 @@ public class ImageFragment extends SketchFragment {
 		return fragment;
 	}
 
+	private int fragVal;
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -26,7 +27,7 @@ public class ImageFragment extends SketchFragment {
 				false);
 		setupView(layoutView);
 		setupListner();
-
+		fragVal = getArguments() != null ? getArguments().getInt("val") : 1;
 		return layoutView;
 	}
 

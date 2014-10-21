@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -22,6 +23,7 @@ import android.widget.EditText;
 
 import com.avialdo.sketchit.R;
 import com.avialdo.sketchit.abstracts.SketchNetworkFragment;
+import com.avialdo.sketchit.activities.Dashboard;
 
 public class SignupFragment extends SketchNetworkFragment {
 
@@ -37,10 +39,7 @@ public class SignupFragment extends SketchNetworkFragment {
 
 	public static SignupFragment init(int val) {
 		SignupFragment fragment = new SignupFragment();
-		// Supply val input as an argument.
-		// Bundle args = new Bundle();
-		// args.putInt("val", val);
-		// truitonFrag.setArguments(args);
+
 		return fragment;
 	}
 
@@ -142,6 +141,9 @@ public class SignupFragment extends SketchNetworkFragment {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				// new RegisterRequest(name, email, password)
+				startActivity(new Intent(SignupFragment.this.getActivity(),
+						Dashboard.class));
+				SignupFragment.this.getActivity().finish();
 			}
 		});
 	}

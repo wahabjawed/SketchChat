@@ -62,7 +62,7 @@ public class MainActivity extends Activity {
 		// while developing the app, then uncomment it when it's ready.
 		GCMRegistrar.checkManifest(this);
 
-		lblMessage = (TextView) findViewById(R.id.lblMessage);
+	//	lblMessage = (TextView) findViewById(R.id.lblMessage);
 
 		registerReceiver(mHandleMessageReceiver, new IntentFilter(
 				DISPLAY_MESSAGE_ACTION));
