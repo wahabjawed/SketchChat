@@ -1,6 +1,10 @@
 package com.avialdo.sketchit.fragments;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -14,12 +18,9 @@ import com.avialdo.sketchit.activities.WelcomePager;
 public class WelcomeFragment extends SketchFragment {
 
 	Button login, signup;
-
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-
-	}
+	static final int ITEMS = 3;
+	MyAdapter mAdapter;
+	private int fragVal;
 
 	public static WelcomeFragment init(int val) {
 		WelcomeFragment fragment = new WelcomeFragment();
@@ -29,6 +30,16 @@ public class WelcomeFragment extends SketchFragment {
 		// truitonFrag.setArguments(args);
 		return fragment;
 	}
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		fragVal = getArguments() != null ? getArguments().getInt("val") : 1;
+	}
+
+	// private PagerAdapter buildAdapter() {
+	// return (new MyAdapter(getActivity(), getChildFragmentManager()));
+	// }
 
 	@Override
 	public void setupView(View layoutView) {
@@ -43,6 +54,10 @@ public class WelcomeFragment extends SketchFragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View layoutView = inflater.inflate(R.layout.welcome, container, false);
+
+		ViewPager pager = (ViewPager) layoutView.findViewById(R.id.pager);
+		mAdapter = new MyAdapter(getChildFragmentManager());
+		pager.setAdapter(mAdapter);
 		setupView(layoutView);
 		setupListner();
 
@@ -75,6 +90,23 @@ public class WelcomeFragment extends SketchFragment {
 			}
 		});
 
+	}
+
+	public static class MyAdapter extends FragmentPagerAdapter {
+		public MyAdapter(FragmentManager fragmentManager) {
+			super(fragmentManager);
+		}
+
+		@Override
+		public int getCount() {
+			return ITEMS;
+		}
+
+		@Override
+		public Fragment getItem(int position) {
+
+			return ImageFragment.init(position);
+		}
 	}
 
 }
